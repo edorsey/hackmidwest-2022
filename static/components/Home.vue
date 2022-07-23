@@ -151,7 +151,8 @@
     <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
       <!-- Replace with your content -->
       <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>
+        <!-- <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div> -->
+        <About />
       </div>
       <!-- /End replace -->
     </div>
@@ -162,6 +163,6 @@
 
 <script>
 export default {
-  name: 'NuxtTutorial'
+  name: 'Home'
 }
 </script>
