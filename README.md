@@ -6,6 +6,10 @@
 - make a `.env` file for minio username/password `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD`
 - spin up the services `docker compose up -d` 
 
+## Local URL
+
+(https://console.minio.hm22.local/login)[https://console.minio.hm22.local/login]
+
 ## Hosts file
 
 ```
