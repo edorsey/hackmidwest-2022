@@ -1,5 +1,19 @@
 # Hack Midwest 2022 Project
 
+IPFS + S3 api gateway
+
+S3 is an ambiguous file storage API on the web, IPFS is a decentralized file system.  The idea is to give you a standard API (S3) to upload files to IPFS.
+
+Current Goal:
+- Upload & host a static site on Minio
+
+Next Steps:
+- upload files from minio to IPFS
+    - use [minio client](https://docs.min.io/docs/minio-client-quickstart-guide.html)
+        - `brew install minio/stable/mc`
+- use rysnc(?) to generate manifest of new/changed files for IPFS upload
+- host a static site on IPFS
+
 ## Getting Started
 
 - Add the host entries below to your host file `/etc/hosts`
