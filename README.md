@@ -20,6 +20,12 @@ Next Steps:
 - make a `.env` file for minio username/password `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD`
 - spin up the services `docker compose up -d` 
 
+## Build static site & push to Minio
+
+`docker compose up build-static`
+`docker compose up push-static`
+
+
 ## Local URL
 
 (https://console.minio.hm22.local/login)[https://console.minio.hm22.local/login]
@@ -32,3 +38,4 @@ Next Steps:
 127.0.0.1 minio.hm22.local
 127.0.0.1 console.minio.hm22.local
 ```
+
