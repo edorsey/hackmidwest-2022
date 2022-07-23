@@ -42,6 +42,18 @@ services:
       - ./data/ipfs/export:/export
       - ./data/ipfs/storage:/data/ipfs
 
+  push-static:
+    container_name: push-static
+    image: minio/mc:latest
+    command: mb minio/static2
+    volumes:
+      - ./static:/data
+      - ./data/mc:/root/.mc
+    environment:
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      - MC_HOST_minio=http://${MINIO_ACCESS_KEY}:${MINIO_SECRET_KEY}@minio:9000
+
   redis:
     image: redis
     container_name: redis
