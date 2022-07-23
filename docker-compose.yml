@@ -27,7 +27,7 @@ services:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
       - MINIO_BROWSER_REDIRECT_URL=https://console.minio.hm22.local
-      - MINIO_SERVER_URL=https://minio.hm22.local
+      - MINIO_SERVER_URL=http://minio:9000
 
   ipfs:
     container_name: ipfs
