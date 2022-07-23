@@ -1,3 +1,9 @@
+https://hm22.local {
+  reverse_proxy http://minio:9000
+  rewrite * /static{path}?{query}
+  rewrite / /static/index.html
+}
+
 https://minio.hm22.local {
   reverse_proxy http://minio:9000
 }

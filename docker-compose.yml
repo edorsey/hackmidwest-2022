@@ -8,6 +8,11 @@ services:
     ports:
       - 80:80
       - 443:443
+    networks:
+      backend:
+        ipv4_address: 10.5.0.2
+    links:
+      - minio:minio.hm22.local
     volumes:
       - ./data/caddy/data:/data
       - ./data/caddy/config:/config
@@ -16,23 +21,32 @@ services:
   minio:
     container_name: minio
     image: minio/minio:latest
-    command: minio server /data --console-address "0.0.0.0:9001"
+    command: minio server /data --console-address "0.0.0.0:9001" --certs-dir /certs
     restart: unless-stopped
     ports:
       - 9000:9000
       - 9001:9001
+    networks:
+      backend:
+        ipv4_address: 10.5.0.3
     volumes:
       - ./data/minio:/data
+      - ./data/caddy/data/caddy/pki/authorities/local/root.crt:/certs/CAs/root.crt
     environment:
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
       - MINIO_BROWSER_REDIRECT_URL=https://console.minio.hm22.local
-      - MINIO_SERVER_URL=http://minio:9000
+      - MINIO_SERVER_URL=https://minio.hm22.local
+    extra_hosts:
+      - minio.hm22.local:10.5.0.2
 
   ipfs:
     container_name: ipfs
     image: ipfs/go-ipfs:latest
     restart: unless-stopped
+    networks:
+      backend:
+        ipv4_address: 10.5.0.4
     ports:
       - "5001:5001"
       - "8080:8080"
@@ -41,6 +55,14 @@ services:
     volumes:
       - ./data/ipfs/export:/export
       - ./data/ipfs/storage:/data/ipfs
+
+  create-static:
+    container_name: create-static
+    image: minio/mc:latest
+    entrypoint: /bin/bash
+    command: ./create.sh
+    volumes:
+      - ./create.sh:/create.sh
 
   build-static:
     container_name: build-static
@@ -53,17 +75,30 @@ services:
   push-static:
     container_name: push-static
     image: minio/mc:latest
-    command: cp -r /static/dist minio/static
+    command: cp --insecure -r /static/dist/ minio/static
+    networks:
+      backend:
+        ipv4_address: 10.5.0.20
     volumes:
-      - ./deploy.sh:/deploy.sh
       - ./static:/static
       - ./data/mc:/root/.mc
+      - ./data/caddy/data/caddy/pki/authorities/local/root.crt:/certs/CAs/root.crt
     environment:
       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
       - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
-      - MC_HOST_minio=http://${MINIO_ACCESS_KEY}:${MINIO_SECRET_KEY}@minio:9000
+      - MC_HOST_minio=https://${MINIO_ACCESS_KEY}:${MINIO_SECRET_KEY}@minio.hm22.local
+    extra_hosts:
+      - minio.hm22.local:10.5.0.2
 
   redis:
     image: redis
     container_name: redis
     restart: unless-stopped
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
