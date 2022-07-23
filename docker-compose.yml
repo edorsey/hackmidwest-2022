@@ -42,12 +42,21 @@ services:
       - ./data/ipfs/export:/export
       - ./data/ipfs/storage:/data/ipfs
 
+  build-static:
+    container_name: build-static
+    image: node:16
+    command: ./build.sh
+    volumes:
+      - ./build.sh:/build.sh
+      - ./static:/static
+
   push-static:
     container_name: push-static
     image: minio/mc:latest
-    command: mb minio/static2
+    command: cp -r /static/dist minio/static
     volumes:
-      - ./static:/data
+      - ./deploy.sh:/deploy.sh
+      - ./static:/static
       - ./data/mc:/root/.mc
     environment:
       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
