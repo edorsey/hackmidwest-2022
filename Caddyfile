@@ -1,0 +1,11 @@
+https://minio.hm22.local {
+  reverse_proxy http://minio:9000
+}
+
+https://console.minio.hm22.local {
+  reverse_proxy http://minio:9001
+}
+
+https://ipfs.hm22.local {
+  reverse_proxy http://ipfs:5001
+}

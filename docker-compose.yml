@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  caddy:
+    image: caddy:alpine
+    restart: unless-stopped
+    container_name: caddy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./data/caddy/data:/data
+      - ./data/caddy/config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile
+
+  minio:
+    container_name: minio
+    image: minio/minio:latest
+    command: minio server /data --console-address "0.0.0.0:9001"
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - ./data/minio:/data
+    environment:
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+      - MINIO_BROWSER_REDIRECT_URL=https://console.minio.hm22.local
+      - MINIO_SERVER_URL=https://minio.hm22.local
+
+  ipfs:
+    container_name: ipfs
+    image: ipfs/go-ipfs:latest
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+      - "8080:8080"
+      - "4001:4001/udp"
+      - "4001:4001"
+    volumes:
+      - ./data/ipfs/export:/export
+      - ./data/ipfs/storage:/data/ipfs
+
+  redis:
+    image: redis
+    container_name: redis
+    restart: unless-stopped
