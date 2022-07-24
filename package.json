@@ -4,7 +4,9 @@
   "description": "IPFS + S3 api gateway",
   "main": "index.js",
   "dependencies": {
+    "@jest/expect": "^28.1.3",
     "express": "^4.18.1",
+    "ipfs-core": "^0.15.4",
     "ipfs-http-client": "^50.0.3",
     "jest-node-exports-resolver": "^1.1.6",
     "js-ipfs": "0.0.301",
