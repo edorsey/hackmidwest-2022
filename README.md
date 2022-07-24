@@ -38,4 +38,6 @@ Next Steps:
 127.0.0.1 ipfs.hm22.local
 127.0.0.1 minio.hm22.local
 127.0.0.1 console.minio.hm22.local
+127.0.0.1 api.hm22.local
+127.0.0.1 ipfs-gateway.hm22.local
 ```
