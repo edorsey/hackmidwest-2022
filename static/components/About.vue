@@ -2,7 +2,8 @@
   <div class="relative bg-white">
     <div class="lg:absolute lg:inset-0">
       <div class="lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2">
-        <img class="h-56 w-full object-cover lg:absolute lg:h-full" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" alt="" />
+        <!-- <img class="h-56 w-full object-cover lg:absolute lg:h-full" src="https://user-images.githubusercontent.com/23458977/180629852-917b3043-6c1a-4078-8941-17e61a7d8dff.png" alt="" /> -->
+        <iframe class="h-56 w-full object-cover lg:absolute lg:h-full" src="https://whimsical.com/embed/DLqqqsfZh25a2cXEhvygLc"></iframe>
       </div>
     </div>
     <div class="relative pt-12 pb-16 px-4 sm:pt-16 sm:px-6 lg:px-8 lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-2">
@@ -20,10 +21,8 @@
               <li>Cras cras lobortis vitae vivamus ultricies facilisis tempus.</li>
               <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
             </ul>
-            <p>Rhoncus nisl, libero egestas diam fermentum dui. At quis tincidunt vel ultricies. Vulputate aliquet velit faucibus semper. Pellentesque in venenatis vestibulum consectetur nibh id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi enim fermentum lacus in. Viverra.</p>
-            <h3>How we’re different</h3>
+            <h3>How we're different</h3>
             <p>Tincidunt integer commodo, cursus etiam aliquam neque, et. Consectetur pretium in volutpat, diam. Montes, magna cursus nulla feugiat dignissim id lobortis amet. Laoreet sem est phasellus eu proin massa, lectus. Diam rutrum posuere donec ultricies non morbi. Mi a platea auctor mi.</p>
-            <p>Mauris ullamcorper imperdiet nec egestas mi quis quam ante vulputate. Vel faucibus adipiscing lacus, eget. Nunc fermentum id tellus donec. Ut metus odio sit sit varius non nunc orci. Eu, mi neque, ornare suspendisse amet, nibh. Facilisi volutpat lectus id sapien dis mauris rhoncus. Est rhoncus, interdum imperdiet ac eros, diam mauris, tortor. Risus id sit molestie magna.</p>
           </div>
         </div>
       </div>
