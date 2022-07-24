@@ -4,7 +4,7 @@ S3 is a ubiquitous file storage API on the web, IPFS is a decentralized file sys
 
 web3 and self-hosting should go together like chocolate and peanut butter, but there has yet to be a lot of cross-over. This aims to change that.
 
-Many self-hosted application allow you to use S3 for object storage, but many services, like [Minio](https://minio.com) offer APIs that are compatible and make it possible to self-host your own object storage.
+Many self-hosted application allow you to use S3 for object storage. Services like [Minio](https://minio.com) offer APIs that are compatible and make it possible to self-host your own object storage.
 
 The goal of this project is allow you to make use of IPFS in projects that have no understanding of what IPFS is and take advantage of it for glacier-like self-hosted cold storage.
 
