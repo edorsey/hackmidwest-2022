@@ -23,7 +23,7 @@ The goal of this project is allow you to make use of IPFS in projects that have 
 
 Currently, this is only really (maybe) suited for static sites that PUT their entire contents to an S3 bucket on deploy. One-off puts will break the IPNS pointer.
 
-Using tags and S3's listObjects API should be able to allow support for one-off PUTs and much larger batches of updates and much larger buckets in general to be supported.
+Using tags and S3's listObjects API should be able to allow support for one-off PUTs, much larger batches of updates, and much larger buckets to be supported.
 
 ## Local URLs
 
