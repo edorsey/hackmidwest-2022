@@ -1,0 +1,188 @@
+#!/usr/bin/env node
+const path = require("path");
+const { CID } = require("multiformats/cid");
+const { handleEvent } = require("../src/bridge");
+const ipfs = require("../src/ipfs");
+const kafka = require("../src/kafka");
+const { client: minio } = require("../src/minio");
+
+const init = async (topic, groupId) => {
+  console.log("Creating consumer...", { groupId });
+  const consumer = await kafka.consumer({
+    groupId,
+  });
+
+  console.log("Connecting consumer...");
+  await consumer.connect();
+
+  console.log("Subscribing consumer...", { topic });
+  await consumer.subscribe({
+    topic,
+  });
+
+  console.log("Running consumer...");
+  await consumer.run({
+    eachBatchAutoResolve: true,
+    eachBatch: async ({
+      batch,
+      resolveOffset,
+      heartbeat,
+      commitOffsetsIfNecessary,
+      uncommittedOffsets,
+      isRunning,
+      isStale,
+      pause,
+    }) => {
+      const results = [];
+
+      for (let message of batch.messages) {
+        const [key, value] = [message.key.toString(), message.value.toString()];
+
+        const data = JSON.parse(value);
+
+        const result = await handleEvent(data);
+
+        if (result) {
+          results.push(result);
+        }
+
+        resolveOffset(message.offset);
+        await heartbeat();
+      }
+
+      if (results.length === 0) {
+        return;
+      }
+
+      const resultsByBucket = results.reduce((acc, result) => {
+        const { bucket } = result;
+        if (!acc[bucket]) {
+          acc[bucket] = [];
+        }
+
+        acc[bucket].push(result);
+
+        return acc;
+      }, {});
+
+      const allBuckets = Object.keys(resultsByBucket);
+
+      console.log({ resultsByBucket, allBuckets });
+
+      const bucketTags = await Promise.all(
+        allBuckets.map(async (bucket) => {
+          try {
+            const tags = await minio.getBucketTagging(bucket);
+
+            return tags;
+          } catch (err) {
+            const newDirectory = await ipfs.add({
+              path: `${bucket}/`,
+            });
+
+            const tagResult = await minio.setBucketTagging(bucket, {
+              cid: newDirectory.cid.toString(),
+            });
+
+            const tags = await minio.getBucketTagging(bucket);
+
+            console.log({ newDirectory, tagResult, tags });
+
+            return tags;
+          }
+        })
+      );
+
+      const bucketCIDs = bucketTags.map((tags, i) => {
+        const tag = tags.find((t) => t.Key === "cid");
+        const cid = tag.Value;
+
+        const bucket = allBuckets[i];
+
+        return { cid, bucket };
+      });
+
+      console.log({ bucketCIDs });
+
+      const newBucketCIDs = await Promise.all(
+        bucketCIDs.map(async ({ cid, bucket }) => {
+          const bucketResults = resultsByBucket[bucket];
+
+          let currentCID = CID.parse(cid);
+
+          for (const bucketResult of bucketResults) {
+            const key = bucketResult.key;
+
+            console.log(currentCID, {
+              ...bucketResult.ipfsAddResult,
+              name: key,
+              Name: "",
+            });
+
+            try {
+              const result = await ipfs.object.patch.addLink(currentCID, {
+                ...bucketResult.ipfsAddResult,
+                name: key,
+              });
+              console.log({ result });
+
+              currentCID = result;
+            } catch (err) {
+              console.log("FAILED", key.split("/"), path.parse(key));
+              const { dir, base } = path.parse(key);
+              const dirArray = dir.split("/");
+
+              let topDir = dirArray.pop();
+              let prevDirectory = await ipfs.add({
+                path: topDir,
+              });
+
+              dirCID = await ipfs.object.patch.addLink(prevDirectory.cid, {
+                ...bucketResult.ipfsAddResult,
+                name: base,
+              });
+
+              const top = dirArray.pop();
+
+              for (const d of dirArray.reverse()) {
+                console.log({ d });
+                topDir = d;
+                const directory = await ipfs.add({
+                  path: d,
+                });
+
+                console.log(dirCID, directory, prevDirectory);
+
+                dirCID = await ipfs.object.patch.addLink(directory.cid, {
+                  ...prevDirectory,
+                  cid: dirCID,
+                  name: d,
+                });
+
+                prevDirectory = directory;
+                topDir = d;
+              }
+
+              console.log({ topDir });
+
+              const result = await ipfs.object.patch.addLink(currentCID, {
+                ...prevDirectory,
+                cid: dirCID,
+                name: topDir,
+              });
+              console.log({ dirCID, result, currentCID });
+
+              currentCID = result;
+            }
+          }
+
+          return currentCID;
+        })
+      );
+
+      console.log("BUCKET TAGS", newBucketCIDs);
+    },
+  });
+};
+
+init("minio-events", "ipfs");
