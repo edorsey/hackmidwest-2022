@@ -67,8 +67,6 @@ const init = async (topic, groupId) => {
 
       const allBuckets = Object.keys(resultsByBucket);
 
-      console.log({ resultsByBucket, allBuckets });
-
       const bucketTags = await Promise.all(
         allBuckets.map(async (bucket) => {
           try {
@@ -86,8 +84,6 @@ const init = async (topic, groupId) => {
 
             const tags = await minio.getBucketTagging(bucket);
 
-            console.log({ newDirectory, tagResult, tags });
-
             return tags;
           }
         })
@@ -102,85 +98,99 @@ const init = async (topic, groupId) => {
         return { cid, bucket };
       });
 
-      console.log({ bucketCIDs });
+      const bucketKeyPaths = bucketCIDs.map(({ cid, bucket }) => {
+        const bucketResults = resultsByBucket[bucket];
 
-      const newBucketCIDs = await Promise.all(
-        bucketCIDs.map(async ({ cid, bucket }) => {
-          const bucketResults = resultsByBucket[bucket];
+        const keyPaths = bucketResults
+          .map((result) => {
+            return {
+              key: result.key,
+              cid: result.ipfsAddResult.cid,
+              dag: result.ipfsAddResult,
+            };
+          })
+          .map(({ key, cid, dag }) => {
+            const { dir, base } = path.parse(key);
 
-          let currentCID = CID.parse(cid);
+            return {
+              dir: dir.split("/").filter(Boolean),
+              base,
+              cid,
+              dag,
+            };
+          });
 
-          for (const bucketResult of bucketResults) {
-            const key = bucketResult.key;
+        return keyPaths;
+      });
 
-            console.log(currentCID, {
-              ...bucketResult.ipfsAddResult,
-              name: key,
-              Name: "",
+      const trees = bucketKeyPaths.map((keyPaths) => {
+        return keyPaths.reduce(
+          (tree, { dir = [], base, cid, dag }) => {
+            if (dir.length > 0) {
+              dir.reduce((dirTree, d, i) => {
+                if (!dirTree[d]) {
+                  dirTree[d] = { _files: [] };
+                }
+
+                if (i === dir.length - 1) {
+                  dirTree[d]._files.push({ cid: cid.toString(), dag, base });
+                }
+
+                return dirTree[d];
+              }, tree);
+            } else {
+              tree._files.push({ cid: cid.toString(), dag, base });
+            }
+
+            return tree;
+          },
+          { _files: [] }
+        );
+      });
+
+      const parseTree = async (rootKey, subTree, cid) => {
+        const keys = Object.keys(subTree).filter((key) => key !== "_files");
+
+        if (keys.length > 0) {
+          for (const key of keys) {
+            const emptyDir = await ipfs.add({
+              path: key,
             });
 
-            try {
-              const result = await ipfs.object.patch.addLink(currentCID, {
-                ...bucketResult.ipfsAddResult,
-                name: key,
-              });
-              console.log({ result });
+            const fullDirCID = await parseTree(key, subTree[key], emptyDir.cid);
 
-              currentCID = result;
-            } catch (err) {
-              console.log("FAILED", key.split("/"), path.parse(key));
-              const { dir, base } = path.parse(key);
-              const dirArray = dir.split("/");
-
-              let topDir = dirArray.pop();
-              let prevDirectory = await ipfs.add({
-                path: topDir,
-              });
-
-              dirCID = await ipfs.object.patch.addLink(prevDirectory.cid, {
-                ...bucketResult.ipfsAddResult,
-                name: base,
-              });
-
-              const top = dirArray.pop();
-
-              for (const d of dirArray.reverse()) {
-                console.log({ d });
-                topDir = d;
-                const directory = await ipfs.add({
-                  path: d,
-                });
-
-                console.log(dirCID, directory, prevDirectory);
-
-                dirCID = await ipfs.object.patch.addLink(directory.cid, {
-                  ...prevDirectory,
-                  cid: dirCID,
-                  name: d,
-                });
-
-                prevDirectory = directory;
-                topDir = d;
-              }
-
-              console.log({ topDir });
-
-              const result = await ipfs.object.patch.addLink(currentCID, {
-                ...prevDirectory,
-                cid: dirCID,
-                name: topDir,
-              });
-              console.log({ dirCID, result, currentCID });
-
-              currentCID = result;
-            }
+            cid = await ipfs.object.patch.addLink(cid, {
+              ...emptyDir,
+              cid: fullDirCID,
+              name: key,
+            });
           }
+        }
 
-          return currentCID;
-        })
-      );
+        if (subTree._files.length > 0) {
+          for (const file of subTree._files) {
+            cid = await ipfs.object.patch.addLink(cid, {
+              ...file.dag,
+              name: file.base,
+            });
+          }
+        }
 
-      console.log("BUCKET TAGS", newBucketCIDs);
+        return cid;
+      };
+
+      const cids = [];
+
+      for (let i = 0; i < trees.length; i++) {
+        const bucket = bucketCIDs[i];
+        const tree = trees[i];
+        const cid = await parseTree(bucket.bucket, tree, bucket.cid);
+        const nameResult = await ipfs.name.publish(cid);
+        console.log({ nameResult });
+        cids.push(cid);
+      }
+
+      console.log(cids);
     },
   });
 };

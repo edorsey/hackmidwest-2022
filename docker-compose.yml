@@ -38,6 +38,9 @@ services:
       - MINIO_SERVER_URL=https://minio.hm22.local
     extra_hosts:
       - minio.hm22.local:10.5.0.254
+    depends_on:
+      kafka:
+        condition: service_healthy
 
   ipfs:
     container_name: ipfs
@@ -56,21 +59,21 @@ services:
     environment:
       - IPFS_PROFILE=server
 
-  create-static:
-    container_name: create-static
-    image: minio/mc:latest
-    entrypoint: /bin/bash
-    command: ./create.sh
-    volumes:
-      - ./create.sh:/create.sh
+  # create-static:
+  #   container_name: create-static
+  #   image: minio/mc:latest
+  #   entrypoint: /bin/bash
+  #   command: ./create.sh
+  #   volumes:
+  #     - ./create.sh:/create.sh
 
-  build-static:
-    container_name: build-static
-    image: node:16
-    command: ./build.sh
-    volumes:
-      - ./build.sh:/build.sh
-      - ./static:/static
+  # build-static:
+  #   container_name: build-static
+  #   image: node:16
+  #   command: ./build.sh
+  #   volumes:
+  #     - ./build.sh:/build.sh
+  #     - ./static:/static
 
   push-static:
     container_name: push-static
@@ -78,7 +81,6 @@ services:
     command: cp --insecure -r /static/dist/ minio/static
     networks:
       backend:
-        ipv4_address: 10.5.0.20
     volumes:
       - ./static:/static
       - ./data/mc:/root/.mc
@@ -89,13 +91,16 @@ services:
       - MC_HOST_minio=https://${MINIO_ACCESS_KEY}:${MINIO_SECRET_KEY}@minio.hm22.local
     extra_hosts:
       - minio.hm22.local:10.5.0.254
+    depends_on:
+      minio:
+        condition: service_started
 
-  redis:
-    image: redis
-    container_name: redis
-    restart: unless-stopped
-    networks:
-      backend:
+  # redis:
+  #   image: redis
+  #   container_name: redis
+  #   restart: unless-stopped
+  #   networks:
+  #     backend:
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -164,16 +169,16 @@ services:
       - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
       - KAFKA_BROKER=kafka:29092
 
-  worker:
-    image: node:16
-    command: /app/bin/worker
-    networks:
-      backend:
-    volumes:
-      - ./node_modules:/app/node_modules
-      - ./bin/worker:/app/bin/worker
-    environment:
-      - REDIS_HOST=redis
+  # worker:
+  #   image: node:16
+  #   command: /app/bin/worker
+  #   networks:
+  #     backend:
+  #   volumes:
+  #     - ./node_modules:/app/node_modules
+  #     - ./bin/worker:/app/bin/worker
+  #   environment:
+  #     - REDIS_HOST=redis
 
   worker-kafka:
     image: node:16
