@@ -28,6 +28,8 @@ const people = [
 </script>
 
 <template>
+  <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+  <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
     <div class="bg-gray-900">
         <div class="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
             <div class="space-y-12">
@@ -69,6 +71,8 @@ const people = [
                 </div>
             </div>
         </div>
+      </div>
+  </div>
 </template>
 
 
