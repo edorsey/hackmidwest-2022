@@ -16,8 +16,10 @@ The goal of this project is allow you to make use of IPFS in projects that have 
 
 ## Build static site & push to Minio
 
-`docker compose up build-static`
-`docker compose up push-static`
+```
+docker compose up build-static
+docker compose up push-static
+```
 
 ## Limitations
 
