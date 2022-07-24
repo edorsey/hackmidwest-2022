@@ -38,16 +38,42 @@ www.post("/webhooks/minio", async (req, res) => {
         );
       }
 
-      let result;
+      let ipfsAddResult;
       try {
-        result = await ipfs.add(stream);
+        const opts = {
+          content: stream,
+          path: `/${key}`,
+        };
+
+        ipfsAddResult = await ipfs.add(opts);
       } catch (err) {
         throw new Error("Failed to add object to IPFS");
       }
 
-      console.log({ stats, result });
+      let result;
+      try {
+        result = await minio.tagObject(bucket, key, {
+          cid: ipfsAddResult.cid.toString(),
+        });
+      } catch (err) {
+        throw new Error(
+          `Failed to tag object. bucket: ${bucket}, key: ${key} `
+        );
+      }
+
+      let tags;
+      try {
+        tags = await minio.getObjectTags(bucket, key);
+      } catch (err) {
+        throw new Error(
+          `Failed to get object tags. bucket: ${bucket}, key: ${key}`
+        );
+      }
+
+      console.log({ stats, ipfsAddResult, result, tags });
     } catch (err) {
-      res.status(500).json({
+      console.log("ERROR", err);
+      return res.status(500).json({
         status: "error",
         error: err.message,
       });

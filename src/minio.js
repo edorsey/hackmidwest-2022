@@ -8,8 +8,6 @@ const defaultOptions = {
   secretKey: process.env.MINIO_SECRET_KEY,
 };
 
-console.log({ defaultOptions });
-
 const minio = new Minio.Client(defaultOptions);
 
 const getObject = (bucketName, objectKey) => {
@@ -30,4 +28,22 @@ const statObject = (bucketName, objectKey) => {
   });
 };
 
-module.exports = { getObject, statObject };
+const tagObject = (bucketName, objectKey, tagList) => {
+  return new Promise((resolve, reject) => {
+    minio.setObjectTagging(bucketName, objectKey, tagList, (err) => {
+      if (err) return reject(err);
+      resolve();
+    });
+  });
+};
+
+const getObjectTags = (bucketName, objectKey) => {
+  return new Promise((resolve, reject) => {
+    minio.getObjectTagging(bucketName, objectKey, (err, tagList) => {
+      if (err) return reject(err);
+      resolve(tagList);
+    });
+  });
+};
+
+module.exports = { getObject, statObject, tagObject, getObjectTags };
