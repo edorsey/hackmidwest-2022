@@ -55,6 +55,8 @@ services:
     volumes:
       - ./data/ipfs/export:/export
       - ./data/ipfs/storage:/data/ipfs
+    environment:
+      - IPFS_PROFILE=server
 
   create-static:
     container_name: create-static
@@ -107,6 +109,14 @@ services:
     volumes:
       - ./node_modules:/app/node_modules
       - ./bin/www:/app/bin/www
+      - ./src:/app/src
+    environment:
+      - IPFS_HOST=http://ipfs:5001
+      - MINIO_HOST=minio
+      - MINIO_PORT=9000
+      - MINIO_SSL_OFF=Y
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
 
   worker:
     image: node:16

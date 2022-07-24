@@ -53,7 +53,7 @@ module.exports = {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  // globalSetup: './test/scripts/jest.setup.js',
+  globalSetup: "./test/jest.setup.js",
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: './test/scripts/jest.teardown.js',

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
-const www = require("./src/www");
+const www = require("../src/www");
 
 www.listen(3002);
+console.log("Listening");
