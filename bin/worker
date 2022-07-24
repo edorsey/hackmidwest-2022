@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+const redis = require("redis");
+
+console.log("REDIS");
+let redisNotReady = true;
+const redisClient = redis.createClient({
+  url: `redis://${process.env.REDIS_HOST}:6379`,
+});
+
+(async () => {
+  console.log("CONNECTING");
+  await redisClient.connect();
+
+  const result = await redisClient.lRange("minio", 0, 5);
+
+  console.log("CONNECTED", result);
+})();
+
+console.log({
+  host: process.env.REDIS_HOST,
+  port: 6379,
+});
+
+redisClient.on("error", (err) => {
+  console.log("error", err);
+});
+
+redisClient.on("connect", (err) => {
+  console.log("connect");
+});
+
+redisClient.on("ready", (err) => {
+  redisNotReady = false;
+  console.log("ready");
+});
+
+setTimeout(() => {
+  console.log("TIMEOUT");
+}, 2000);

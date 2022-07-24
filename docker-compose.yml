@@ -94,6 +94,31 @@ services:
     image: redis
     container_name: redis
     restart: unless-stopped
+    networks:
+      backend:
+        ipv4_address: 10.5.0.5
+
+  api:
+    image: node:16
+    command: /app/bin/www
+    networks:
+      backend:
+        ipv4_address: 10.5.0.8
+    volumes:
+      - ./node_modules:/app/node_modules
+      - ./bin/www:/app/bin/www
+
+  worker:
+    image: node:16
+    command: /app/bin/worker
+    networks:
+      backend:
+        ipv4_address: 10.5.0.7
+    volumes:
+      - ./node_modules:/app/node_modules
+      - ./bin/worker:/app/bin/worker
+    environment:
+      - REDIS_HOST=redis
 
 networks:
   backend:
