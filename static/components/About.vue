@@ -16,19 +16,19 @@
         <div
           class="text-base max-w-prose mx-auto lg:max-w-lg lg:ml-auto lg:mr-0"
         >
-          <p class="mt-8 text-lg text-gray-500">
+          <p class="mt-8 text-lg text-gray-700">
             S3 represents a ubiquitous storage API.
           </p>
-          <p class="mt-8 text-lg text-gray-500">
+          <p class="mt-8 text-lg text-gray-700">
             IPFS can be used in a similar manner but is more similar to AWS
-            Glacier in the capabitilies it gives you.
+            Glacier in the capabilities it gives you.
           </p>
-          <p>
+          <p class="mt-8 text-lg text-gray-700">
             This project bridges an S3-compatible object store called Minio to
             IPFS, so that puts to Minio will result in the bucket being synced
             to a local IPFS node.
           </p>
-          <p>
+          <p class="mt-8 text-lg text-gray-700">
             Many popular self-hosted, but non-web3 projects allow you to store
             assets in an S3-compatible API. This legacy apps a way to take
             advantage of the unique capabilities of IPFS and web3 without having
