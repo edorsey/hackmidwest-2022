@@ -15,3 +15,8 @@ https://console.minio.hm22.local {
 https://ipfs.hm22.local {
   reverse_proxy http://ipfs:5001
 }
+
+https://ipfs-gateway.hm22.local {
+  reverse_proxy http://ipfs:8080
+}
+
