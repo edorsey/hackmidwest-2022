@@ -1,22 +1,5 @@
 #!/usr/bin/env node
 
-const express = require("express");
+const www = require("./lib/www");
 
-const app = express();
-app.set("port", 3002);
-
-app.use(express.json());
-
-app.get("/webhooks/minio", (req, res) => {
-  console.log(JSON.stringify(req.params));
-  res.json(req.params);
-});
-
-app.post("/webhooks/minio", (req, res) => {
-  console.dir(JSON.stringify(req.body));
-  res.json(req.body);
-});
-
-console.log("LISTEN");
-app.listen(3002);
-console.log("LISTENING");
+www.listen(3002);

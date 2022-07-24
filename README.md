@@ -10,11 +10,11 @@ Current Goal:
 
 Next Steps:
 
-- upload files from minio to IPFS
-  - use [minio client](https://docs.min.io/docs/minio-client-quickstart-guide.html)
-    - `brew install minio/stable/mc`
-- use rysnc(?) to generate manifest of new/changed files for IPFS upload
-- host a static site on IPFS
+- ~~use rysnc(?) to generate manifest of new/changed files for IPFS upload~~
+- [x] host a static site on IPFS
+- [ ] upload files from [minio](https://www.npmjs.com/package/minio) to [IPFS](https://www.npmjs.com/package/ipfs-js)
+- [ ] add IPFS content address to Minio Object as a tag
+- [ ] add IPNS address to Minio Object as a tag
 
 ## Getting Started
 

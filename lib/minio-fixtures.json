@@ -1,0 +1,743 @@
+[
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/.nojekyll",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:55.932Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646A56BD17",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": ".nojekyll",
+            "eTag": "d41d8cd98f00b204e9800998ecf8427e",
+            "contentType": "application/octet-stream",
+            "userMetadata": {
+              "content-type": "application/octet-stream"
+            },
+            "sequencer": "1704A0646B0D7DA0"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/200.html",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:55.933Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646ACA23C4",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "200.html",
+            "size": 2605,
+            "eTag": "8817dfc47f0b077404fcf81903af1785",
+            "contentType": "text/html",
+            "userMetadata": {
+              "content-type": "text/html"
+            },
+            "sequencer": "1704A0646B20E344"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/e7d6145.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.005Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646C4BA050",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2Fe7d6145.js",
+            "size": 11848,
+            "eTag": "8ad94d7ad6d053975e41776b90fe19a2",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0646F61B898"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/d371d1d.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.006Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646B3A263E",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2Fd371d1d.js",
+            "size": 12138,
+            "eTag": "ac3f6a75afe050556a6f56de20e2d949",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0646F70E9CC"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/04f14a6.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:55.935Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646A06A328",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2F04f14a6.js",
+            "size": 3348,
+            "eTag": "f81da155cd96b8e1d9b51aba30cdb04c",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0646B36498D"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/211700a.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:55.948Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646A6BD824",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2F211700a.js",
+            "size": 2372,
+            "eTag": "cf6c7005f37eaf9b6fb6c7ebb1156c85",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0646C083AB7"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/dd1b576.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:55.994Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646BA986F1",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2Fdd1b576.js",
+            "size": 86987,
+            "eTag": "ef5c4166187488716d220833616038c9",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0646EC29273"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/LICENSES",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:55.996Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646B3BF3ED",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2FLICENSES",
+            "size": 406,
+            "eTag": "a47943e4fc53329cba8de3fa363f22e6",
+            "contentType": "application/octet-stream",
+            "userMetadata": {
+              "content-type": "application/octet-stream"
+            },
+            "sequencer": "1704A0646EE6736D"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/2c73907.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.008Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646B36DF20",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2F2c73907.js",
+            "size": 221932,
+            "eTag": "db6a93a11b099fc5dc58a7d43a5105c4",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0646F8F3271"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/fa234a8.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.011Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646C953232",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2Ffa234a8.js",
+            "size": 119,
+            "eTag": "4e204902d844f7ab13639ae1bedeaa64",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0646FBE96BF"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/static/1658622219/manifest.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.039Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646CDFA935",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2Fstatic%2F1658622219%2Fmanifest.js",
+            "size": 50,
+            "eTag": "8282534e87b7e3a8c022d700b8420a6b",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A0647175139C"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/_nuxt/static/1658622219/payload.js",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.042Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646D2F2077",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "_nuxt%2Fstatic%2F1658622219%2Fpayload.js",
+            "size": 59,
+            "eTag": "0d6c3ff40786957959f234b1f787baa3",
+            "contentType": "application/javascript",
+            "userMetadata": {
+              "content-type": "application/javascript"
+            },
+            "sequencer": "1704A064719A20E9"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/favicon.ico",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.045Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646F8A2084",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "favicon.ico",
+            "size": 8636,
+            "eTag": "31f657978377508585fc99a95b8d825e",
+            "contentType": "image/x-icon",
+            "userMetadata": {
+              "content-type": "image/x-icon"
+            },
+            "sequencer": "1704A06471CF34AE"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  },
+  {
+    "EventName": "s3:ObjectCreated:Put",
+    "Key": "static/index.html",
+    "Records": [
+      {
+        "eventVersion": "2.0",
+        "eventSource": "minio:s3",
+        "awsRegion": "",
+        "eventTime": "2022-07-24T01:41:56.047Z",
+        "eventName": "s3:ObjectCreated:Put",
+        "userIdentity": {
+          "principalId": "hm22"
+        },
+        "requestParameters": {
+          "principalId": "hm22",
+          "region": "",
+          "sourceIPAddress": "10.5.0.20"
+        },
+        "responseElements": {
+          "content-length": "0",
+          "x-amz-request-id": "1704A0646F9E7931",
+          "x-minio-deployment-id": "91e25a31-cec4-4dec-bb26-c4cd156602a0",
+          "x-minio-origin-endpoint": "https://minio.hm22.local"
+        },
+        "s3": {
+          "s3SchemaVersion": "1.0",
+          "configurationId": "Config",
+          "bucket": {
+            "name": "static",
+            "ownerIdentity": {
+              "principalId": "hm22"
+            },
+            "arn": "arn:aws:s3:::static"
+          },
+          "object": {
+            "key": "index.html",
+            "size": 23194,
+            "eTag": "06c332ba43ee80fad86b139a7464a716",
+            "contentType": "text/html",
+            "userMetadata": {
+              "content-type": "text/html"
+            },
+            "sequencer": "1704A06471E587DD"
+          }
+        },
+        "source": {
+          "host": "10.5.0.20",
+          "port": "",
+          "userAgent": "MinIO (linux; amd64) minio-go/v7.0.31 mc/RELEASE.2022-07-15T09-20-55Z"
+        }
+      }
+    ]
+  }
+]
