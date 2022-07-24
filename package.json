@@ -10,7 +10,9 @@
     "ipfs-http-client": "^50.0.3",
     "jest-node-exports-resolver": "^1.1.6",
     "js-ipfs": "0.0.301",
+    "kafkajs": "^2.1.0",
     "minio": "^7.0.29",
+    "multiformats": "^9.7.0",
     "redis": "^4.2.0"
   },
   "devDependencies": {
