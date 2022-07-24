@@ -1,18 +1,12 @@
 # S3 to IPFS bridge
 
-S3 is an ubiquitous file storage API on the web, IPFS is a decentralized file system. The idea is to give you a standard API (S3) to upload files to IPFS.
+S3 is a ubiquitous file storage API on the web, IPFS is a decentralized file system. The idea is to give you a standard API (S3) to upload files to IPFS.
 
-Current Goal:
+web3 and self-hosting should go together like chocolate and peanut butter, but there has yet to be a lot of cross-over. This aims to change that.
 
-- Upload & host a static site on Minio
+Many self-hosted application allow you to use S3 for object storage, but many services, like [Minio](https://minio.com) offer APIs that are compatible and make it possible to self-host your own object storage.
 
-Next Steps:
-
-- ~~use rysnc(?) to generate manifest of new/changed files for IPFS upload~~
-- [x] host a static site on IPFS
-- [x] upload files from [minio](https://www.npmjs.com/package/minio) to [IPFS](https://www.npmjs.com/package/ipfs-js)
-- [x] add IPFS content address to Minio Object as a tag
-- [x] add IPNS address to Minio Object as a tag
+The goal of this project is allow you to make use of IPFS in projects that have no understanding of what IPFS is and take advantage of it for glacier-like self-hosted cold storage.
 
 ## Getting Started
 
@@ -25,9 +19,19 @@ Next Steps:
 `docker compose up build-static`
 `docker compose up push-static`
 
-## Local URL
+## Limitations
 
-(https://console.minio.hm22.local/login)[https://console.minio.hm22.local/login]
+Currently, this is only really (maybe) suited for static sites that PUT their entire contents to an S3 bucket on deploy. One-off puts will break the IPNS pointer.
+
+Using tags and S3's listObjects API should be able to allow support for one-off PUTs and much larger batches of updates and much larger buckets in general to be supported.
+
+## Local URLs
+
+* [Example static site on Minio](https://hm22.local)
+* [Minio Console](https://console.minio.hm22.local)
+* [Minio API](https://minio.hm22.local)
+* [IPFS Web UI](https://ipfs.hm22.local/webui)
+* [IPFS Gateway](https://ipfs-gateway.hm22.local)
 
 ## Hosts file
 
