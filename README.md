@@ -1,6 +1,4 @@
-# Hack Midwest 2022 Project
-
-IPFS + S3 api gateway
+# S3 to IPFS bridge
 
 S3 is an ubiquitous file storage API on the web, IPFS is a decentralized file system. The idea is to give you a standard API (S3) to upload files to IPFS.
 
@@ -14,7 +12,7 @@ Next Steps:
 - [x] host a static site on IPFS
 - [x] upload files from [minio](https://www.npmjs.com/package/minio) to [IPFS](https://www.npmjs.com/package/ipfs-js)
 - [x] add IPFS content address to Minio Object as a tag
-- [ ] add IPNS address to Minio Object as a tag
+- [x] add IPNS address to Minio Object as a tag
 
 ## Getting Started
 
