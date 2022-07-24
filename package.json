@@ -5,6 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.18.1",
+    "js-ipfs": "0.0.301",
+    "minio": "^7.0.29",
     "redis": "^4.2.0"
   },
   "devDependencies": {},
