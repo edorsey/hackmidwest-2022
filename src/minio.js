@@ -46,4 +46,10 @@ const getObjectTags = (bucketName, objectKey) => {
   });
 };
 
-module.exports = { getObject, statObject, tagObject, getObjectTags };
+module.exports = {
+  client: minio,
+  getObject,
+  statObject,
+  tagObject,
+  getObjectTags,
+};
